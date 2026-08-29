@@ -1937,7 +1937,9 @@ s32 execute_mario_action(UNUSED struct Object *obj) {
         }
     }
 
-    //gMarioState->numStars = 120;
+    //Probably better places I can put this but I cba.
+    gMarioState->numStars = save_file_get_total_golden_star_count(0,0,0);
+    gMarioState->numMetalStars = save_file_get_total_metal_star_count(0,0,0);
     //CONFIGURE GRAVITY
     gMarioState->gravMult = 1.0f;
     //badge gravity
