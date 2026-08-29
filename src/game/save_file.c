@@ -45,6 +45,9 @@ u8 gCurrCourseStarFlags = 0;
 
 u8 gSpecialTripleJump = FALSE;
 
+s32 wanted_star_count = 0;
+s32 wanted_metal_star_count = 0;
+
 #define STUB_LEVEL(_0, _1, courseenum, _3, _4, _5, _6, _7, _8) courseenum,
 #define DEFINE_LEVEL(_0, _1, courseenum, _3, _4, _5, _6, _7, _8, _9, _10) courseenum,
 
@@ -607,24 +610,14 @@ s32 save_file_get_total_star_count(s32 fileIndex, s32 minCourse, s32 maxCourse) 
 }
 
 s32 save_file_get_total_golden_star_count(s32 fileIndex, s32 minCourse, s32 maxCourse) {
-    s32 count = 0;
+    s32 count = wanted_star_count;
 
-    for (; minCourse <= maxCourse; minCourse++) {
-        count += save_file_get_course_star_count_golden(fileIndex, minCourse);
-    }
-
-    // Add castle secret star count.
-    //return 999;
-    return save_file_get_course_star_count(fileIndex, -1) + count;
+    return save_file_get_course_star_count(fileIndex, -1) + count; //Honestly no idea why it doesn't just return count but I'm too scared to mess with it
 }
 
 s32 save_file_get_total_metal_star_count(s32 fileIndex, s32 minCourse, s32 maxCourse) {
-    s32 count = 0;
+    s32 count = wanted_metal_star_count;
 
-    for (; minCourse <= maxCourse; minCourse++) {
-       count += save_file_get_course_star_count_metal(fileIndex, minCourse);
-    }
-    //return 999;
     return count;
 }
 
