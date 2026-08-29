@@ -612,7 +612,7 @@ s32 save_file_get_total_star_count(s32 fileIndex, s32 minCourse, s32 maxCourse) 
 s32 save_file_get_total_golden_star_count(s32 fileIndex, s32 minCourse, s32 maxCourse) {
     s32 count = wanted_star_count;
 
-    return save_file_get_course_star_count(fileIndex, -1) + count; //Honestly no idea why it doesn't just return count but I'm too scared to mess with it
+    return count;
 }
 
 s32 save_file_get_total_metal_star_count(s32 fileIndex, s32 minCourse, s32 maxCourse) {
