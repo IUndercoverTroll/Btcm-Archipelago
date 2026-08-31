@@ -2311,8 +2311,8 @@ void render_pause_castle_main_strings(s16 x, s16 y) {
         int_to_str(save_file_get_course_coin_score(gCurrSaveFileNum - 1, gDialogLineNum), strVal);
         print_generic_string(x + 54, y - 5, strVal);
 
-        //only render if not on agamemnon
-        if (save_file_get_progression() != PROG_ON_AGAMEMNON) {
+        //holdover from before it was archipealgo'd
+        if (TRUE) {
             //render the "press A to go to level" thing
             gDPSetEnvColor(gDisplayListHead++, 0, 0, 0, gDialogTextAlpha);
             print_generic_string(x-18, y-46, txt_warp);
