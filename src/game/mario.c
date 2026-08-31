@@ -101,6 +101,8 @@ void clear_costmic_phantasms(void) {
     }
 }
 
+s32 last_frame_flags = 0;
+
 /**************************************************
  *                    ANIMATIONS                  *
  **************************************************/
@@ -1940,6 +1942,14 @@ s32 execute_mario_action(UNUSED struct Object *obj) {
     //Probably better places I can put this but I cba.
     gMarioState->numStars = save_file_get_total_golden_star_count(0,0,0);
     gMarioState->numMetalStars = save_file_get_total_metal_star_count(0,0,0);
+    //Check if flags changed since the last frame. And if so, save the game.
+    if (last_frame_flags != save_file_get_flags()) {
+    
+        gSaveFileModified = TRUE;
+        save_file_do_save(gCurrSaveFileNum - 1);
+    }
+    last_frame_flags = save_file_get_flags();
+
     //CONFIGURE GRAVITY
     gMarioState->gravMult = 1.0f;
     //badge gravity
