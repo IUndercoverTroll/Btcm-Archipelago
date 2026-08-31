@@ -5621,9 +5621,7 @@ void bhv_quest(void) {
 }
 
 void bhv_agamemnon_stairs(void) {
-    if (!save_file_check_progression(PROG_POSTGAME)) {
-        mark_obj_for_deletion(o);
-    }
+    
 }
 
 void bhv_highcane(void) {
