@@ -520,7 +520,7 @@ void bobomb_buddy_act_talk(void) {
             case 4://telescope
 
                 teledialog = 58;
-                if (save_file_get_flags() & SAVE_FLAG_HAVE_KEY_1) {
+                if (save_file_get_flags() & SAVE_FLAG_ARCH_LENS_OBTAINED) {
                     teledialog = 59;
                 }
                 if (save_file_get_flags() & SAVE_FLAG_LENS_INSERTED) {

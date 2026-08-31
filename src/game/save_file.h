@@ -142,6 +142,8 @@ enum SaveProgressFlags {
     SAVE_FLAG_DEFEATED_WHOMP         = (1 << 14), /* 0x00004000 */
     SAVE_FLAG_FREE_BADGE             = (1 << 15),
     SAVE_FLAG_NEW_GAME_PLUS          = (1 << 16),
+    SAVE_FLAG_ARCH_LENS_OBTAINED     = (1 << 17),
+    SAVE_FLAG_ARCH_KEY_OBTAINED      = (1 << 18),
 
     //23 is limit, anything beyond are secret stars
 
