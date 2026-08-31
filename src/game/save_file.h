@@ -9,6 +9,8 @@
 
 #include "course_table.h"
 
+#define EEP16K
+
 #if defined(SRAM)
     #define EEPROM_SIZE 0x8000
 #elif defined(EEP16K)
