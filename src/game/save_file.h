@@ -244,8 +244,10 @@ void check_if_should_set_warp_checkpoint(struct WarpNode *warpNode);
 s32 check_warp_checkpoint(struct WarpNode *warpNode);
 
 void save_file_set_costume_unlock(u32 flags);
+void save_file_set_arch_costume_unlock(u32 flags);
 void save_file_set_wallet_unlock(u32 flags);
 u32 save_file_get_costume_unlock(void);
+u32 save_file_get_regular_costume_unlock(void);
 u32 save_file_get_wallet_unlock(void);
 u32 save_file_get_badge_equip(void);
 u32 save_file_get_badge_unlock(void);

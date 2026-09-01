@@ -120,7 +120,7 @@ void loop_costume_token(void) {
     gMarioState->TokenParam2 = gCurrentObject->oBehParams2ndByte;
 
     if (gCurrentObject->oAction == 0) {
-        if (save_file_get_costume_unlock() & (1<<gCurrentObject->oBehParams2ndByte)) {
+        if (save_file_get_regular_costume_unlock() & (1<<gCurrentObject->oBehParams2ndByte)) {
             obj_mark_for_deletion(gCurrentObject);
             }
         gCurrentObject->oAction = 1;
@@ -129,12 +129,8 @@ void loop_costume_token(void) {
     if (gCurrentObject->oAction == 1) {
         if (gCurrentObject->oDistanceToMario < 150.0f) {
             save_file_set_costume_unlock( (1<<gCurrentObject->oBehParams2ndByte) );
-            gMarioState->LastCostumeID = gCurrentObject->oBehParams2ndByte;
             gCurrentObject->oAction = 2;
             gCurrentObject->oTimer = 0;
-            rtext_insert_pointer[0] = costume_text[gCurrentObject->oBehParams2ndByte];
-            rtext_insert_pointer[1] = costume_effect_text[gCurrentObject->oBehParams2ndByte];
-            run_event(EVENT_COSTUME);
             }
         }
     if (gCurrentObject->oAction == 2) {

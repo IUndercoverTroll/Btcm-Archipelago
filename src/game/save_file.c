@@ -632,6 +632,11 @@ void save_file_set_costume_unlock(u32 flags) {
     gSaveFileModified = TRUE;
 }
 
+void save_file_set_arch_costume_unlock(u32 flags) {
+    gSaveBuffer.files[gCurrSaveFileNum - 1][0].archUnlockedCostumes |= (flags);
+    gSaveFileModified = TRUE;
+}
+
 void save_file_set_wallet_unlock(u32 flags) {
     gSaveBuffer.files[gCurrSaveFileNum - 1][0].WalletCollected |= (flags);
     gSaveFileModified = TRUE;
@@ -689,6 +694,13 @@ u32 save_file_get_flags(void) {
 }
 
 u32 save_file_get_costume_unlock(void) {
+    if (gCurrCreditsEntry != 0 || gCurrDemoInput != NULL) {
+        return 0;
+    }
+    return gSaveBuffer.files[gCurrSaveFileNum - 1][0].archUnlockedCostumes;
+}
+
+u32 save_file_get_regular_costume_unlock(void) {
     if (gCurrCreditsEntry != 0 || gCurrDemoInput != NULL) {
         return 0;
     }

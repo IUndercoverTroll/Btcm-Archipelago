@@ -168,7 +168,7 @@ void randomize_game(u32 seed, u8 is_newgame) {
     } else {
         //normal game
         if (is_newgame) {
-            save_file_set_costume_unlock((1<<randomizer_costume_table[0]));
+            save_file_set_arch_costume_unlock((1<<randomizer_costume_table[0]));
             gMarioState->CostumeID = randomizer_costume_table[0];
             randomizer_is_newgame = FALSE;
         }
