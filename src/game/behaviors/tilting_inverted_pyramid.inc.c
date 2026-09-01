@@ -6112,7 +6112,7 @@ void bhv_postgame_hint() {
 }
 
 void bhv_act_select_wallet(void) {
-    if (!(save_file_get_wallet_unlock() & (1<<o->oBehParams2ndByte))) {
+    if (!(save_file_regular_get_wallet_unlock() & (1<<o->oBehParams2ndByte))) {
         o->header.gfx.sharedChild =  gLoadedGraphNodes[MODEL_NOWALLET];
     } else {
         o->header.gfx.sharedChild =  gLoadedGraphNodes[0xE3];

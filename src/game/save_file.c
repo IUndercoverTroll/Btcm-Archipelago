@@ -642,6 +642,11 @@ void save_file_set_wallet_unlock(u32 flags) {
     gSaveFileModified = TRUE;
 }
 
+void save_file_arch_set_wallet_unlock(u32 flags) {
+    gSaveBuffer.files[gCurrSaveFileNum - 1][0].archWalletCollected |= (flags);
+    gSaveFileModified = TRUE;
+}
+
 void save_file_clear_flags(u32 flags) {
     gSaveBuffer.files[gCurrSaveFileNum - 1][0].flags &= ~flags;
     gSaveBuffer.files[gCurrSaveFileNum - 1][0].flags |= SAVE_FLAG_FILE_EXISTS;
@@ -708,6 +713,13 @@ u32 save_file_get_regular_costume_unlock(void) {
 }
 
 u32 save_file_get_wallet_unlock(void) {
+    if (gCurrCreditsEntry != 0 || gCurrDemoInput != NULL) {
+        return 0;
+    }
+    return gSaveBuffer.files[gCurrSaveFileNum - 1][0].archWalletCollected;
+}
+
+u32 save_file_regular_get_wallet_unlock(void) {
     if (gCurrCreditsEntry != 0 || gCurrDemoInput != NULL) {
         return 0;
     }
@@ -879,7 +891,7 @@ void save_file_get_stats() {
         //TEMPORARY
 
 
-        gMarioState->numMaxGlobalCoins = 100+(50*count_u16_bits(saveFile->WalletCollected));
+        gMarioState->numMaxGlobalCoins = 100+(50*count_u16_bits(saveFile->archWalletCollected));
         gMarioState->numGlobalCoins = saveFile->GlobalCoins;
         gMarioState->numEquippedBadges = count_u32_bits(saveFile->EquippedBadges);
         gMarioState->numMaxHP = UPGRADE_TABLE[gMarioState->Level][2];

@@ -150,7 +150,7 @@ void bhv_loop_wallet(void) {
     switch(gCurrentObject->oAction) {
 
         case 0:
-            if (save_file_get_wallet_unlock() & (1<<gCurrentObject->oBehParams2ndByte)) {
+            if (save_file_regular_get_wallet_unlock() & (1<<gCurrentObject->oBehParams2ndByte)) {
                 obj_mark_for_deletion(gCurrentObject);
             } else {
                 gCurrentObject->oAction = 1;
@@ -165,26 +165,9 @@ void bhv_loop_wallet(void) {
             if (gCurrentObject->oDistanceToMario < 200.0f) {
                 save_file_set_wallet_unlock( (1<<gCurrentObject->oBehParams2ndByte) );
 
-                int_to_str(gMarioState->numMaxGlobalCoins,wallet_text_buffer2);
-                rtext_insert_pointer[0] = &wallet_text_buffer2;
-
-                gMarioState->numMaxGlobalCoins+= 50;
-                if (!rule_check(7,FALSE)) {
-                    gMarioState->gGlobalCoinGain+=50;
-                }
-
                 //gCurrentObject->header.gfx.node.flags |= GRAPH_RENDER_INVISIBLE;
                 gCurrentObject->oAction = 2;
                 gCurrentObject->oTimer = 0;
-
-                int_to_str(gMarioState->numMaxGlobalCoins,wallet_text_buffer);
-                rtext_insert_pointer[1] = &wallet_text_buffer;
-
-                if (!rule_check(7,FALSE)) {
-                    run_event(EVENT_WALLET);
-                } else {
-                    run_event(EVENT_WALLET_EVIL);
-                }
             }
         break;
 

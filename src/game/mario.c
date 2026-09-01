@@ -1968,7 +1968,7 @@ s32 execute_mario_action(UNUSED struct Object *obj) {
     }
     last_frame_costumes = save_file_get_costume_unlock();
 
-
+    gMarioState->numMaxGlobalCoins = 100+(50*count_u16_bits(save_file_get_wallet_unlock()));
     if (gSaveFileModified) {
         save_file_do_save(gCurrSaveFileNum - 1);
     }
