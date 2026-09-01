@@ -45,9 +45,6 @@ u8 gCurrCourseStarFlags = 0;
 
 u8 gSpecialTripleJump = FALSE;
 
-s32 wanted_star_count = 0;
-s32 wanted_metal_star_count = 0;
-
 #define STUB_LEVEL(_0, _1, courseenum, _3, _4, _5, _6, _7, _8) courseenum,
 #define DEFINE_LEVEL(_0, _1, courseenum, _3, _4, _5, _6, _7, _8, _9, _10) courseenum,
 
@@ -610,13 +607,13 @@ s32 save_file_get_total_star_count(s32 fileIndex, s32 minCourse, s32 maxCourse) 
 }
 
 s32 save_file_get_total_golden_star_count(s32 fileIndex, s32 minCourse, s32 maxCourse) {
-    s32 count = wanted_star_count;
+    s32 count = gSaveBuffer.files[fileIndex][0].archNumStars;
 
     return count;
 }
 
 s32 save_file_get_total_metal_star_count(s32 fileIndex, s32 minCourse, s32 maxCourse) {
-    s32 count = wanted_metal_star_count;
+    s32 count = gSaveBuffer.files[fileIndex][0].archNumMetalStars;
 
     return count;
 }

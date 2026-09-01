@@ -101,7 +101,10 @@ void clear_costmic_phantasms(void) {
     }
 }
 
+extern struct SaveBuffer gSaveBuffer;
 s32 last_frame_flags = 0;
+s32 last_frame_stars = 0;
+s32 last_frame_metal_stars = 0;
 
 /**************************************************
  *                    ANIMATIONS                  *
@@ -1864,6 +1867,7 @@ s32 execute_mario_action(UNUSED struct Object *obj) {
     u8 CostumeId = gMarioState->CostumeID;
     struct Object *sp1C;
     struct SpawnParticlesInfo D_8032F270 = { 2, 20, MODEL_MIST, 0, 40, 5, 30, 20, 252, 30, 10.0f, 10.0f };
+    struct SaveFile *saveFile = &gSaveBuffer.files[gCurrSaveFileNum - 1][0];
     u8 *Hatcol = segmented_to_virtual(&mario_hat_v4_lights);
     u8 *Pantcol = segmented_to_virtual(&mario_button_v4_lights);
     u8 *Shoecol = segmented_to_virtual(&mario_shoes_v4_lights);
@@ -1940,15 +1944,27 @@ s32 execute_mario_action(UNUSED struct Object *obj) {
     }
 
     //Probably better places I can put this but I cba.
-    gMarioState->numStars = save_file_get_total_golden_star_count(0,0,0);
-    gMarioState->numMetalStars = save_file_get_total_metal_star_count(0,0,0);
-    //Check if flags changed since the last frame. And if so, save the game.
+    gMarioState->numStars = saveFile->archNumStars;
+    gMarioState->numMetalStars = saveFile->archNumMetalStars;
+    //Check if flags changed since the last frame. And if so, mark the save file as modified.
     if (last_frame_flags != save_file_get_flags()) {
-    
         gSaveFileModified = TRUE;
-        save_file_do_save(gCurrSaveFileNum - 1);
     }
     last_frame_flags = save_file_get_flags();
+    
+    if (last_frame_stars != saveFile->archNumStars) {
+        gSaveFileModified = TRUE;
+    }
+    last_frame_stars = saveFile->archNumStars;
+    
+    if (last_frame_metal_stars != saveFile->archNumMetalStars) {
+        gSaveFileModified = TRUE;
+    }
+    last_frame_metal_stars = saveFile->archNumMetalStars;
+    
+    if (gSaveFileModified) {
+        save_file_do_save(gCurrSaveFileNum - 1);
+    }
 
     //CONFIGURE GRAVITY
     gMarioState->gravMult = 1.0f;
