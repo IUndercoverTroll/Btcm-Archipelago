@@ -106,6 +106,7 @@ s32 last_frame_flags = 0;
 s32 last_frame_stars = 0;
 s32 last_frame_metal_stars = 0;
 u16 last_frame_costumes = 0;
+u16 last_frame_wallets = 0;
 
 /**************************************************
  *                    ANIMATIONS                  *
@@ -1968,7 +1969,12 @@ s32 execute_mario_action(UNUSED struct Object *obj) {
     }
     last_frame_costumes = save_file_get_costume_unlock();
 
+    if (last_frame_wallets != save_file_get_wallet_unlock()) {
+        gSaveFileModified = TRUE;
+    }
     gMarioState->numMaxGlobalCoins = 100+(50*count_u16_bits(save_file_get_wallet_unlock()));
+    last_frame_wallets = save_file_get_wallet_unlock();
+
     if (gSaveFileModified) {
         save_file_do_save(gCurrSaveFileNum - 1);
     }
