@@ -304,8 +304,8 @@ void level_cmd_fileselect_condition(void) {
         sRegister = LEVEL_CASTLE_GROUNDS;
     }
 
-    //new game plus will instantly pop you into the castle
-    if (randomizer_global_seed > 0) {
+    //any game type will instantly pop you into the castle
+    if (TRUE) {
         sRegister = LEVEL_CASTLE;
     }
     if (save_file_get_progression() == PROG_ON_AGAMEMNON) {
