@@ -51,7 +51,7 @@ struct SaveFile {
     u16 archWalletCollected;
     u8 archUnlockedMinigames; //Might go unused tbh. Don't feel like deleting my debug save files getting rid of it.
     u32 archUnlockedBadges : 24;
-    u8 archUpgradeLevel : 4;
+    u8 archUpgradeLevel : 4; //Also gonna go unused. I don't feel like dealing with the 5 million references to gMarioState->Level right now.
     u16 archUnlockedMoves; //Futureproofing. Won't be in 1.0
     u16 archUnlockedPaintings;
 
