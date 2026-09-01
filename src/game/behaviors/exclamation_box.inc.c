@@ -87,8 +87,6 @@ void exclamation_box_act_init(void) {
                         mark_obj_for_deletion(tempobj);
                         break;
                     case LEVEL_BITDW:
-                        tempobj = cur_obj_nearest_object_with_behavior(bhvWarpPipe);
-                        mark_obj_for_deletion(tempobj);
                         break;
                 }
                 mark_obj_for_deletion(o);
