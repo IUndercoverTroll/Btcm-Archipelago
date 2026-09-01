@@ -9,7 +9,7 @@
 
 #include "course_table.h"
 
-#define EEP16K
+#define SRAM
 
 #if defined(SRAM)
     #define EEPROM_SIZE 0x8000
@@ -45,6 +45,18 @@ struct SaveFile {
     u8 SavedLanguage;//NOTE: Not language, actually seed for randomizer
     //I'm scared that if I rename the variable GCC might pull a whoop-dee-doo and re-order the save struct
     //That would be moronic, but I'm being extra safe
+    u32 archNumStars; //lmao skill issue
+    u32 archNumMetalStars; //Okay maybe I was too cocky
+    u16 archUnlockedCostumes;
+    u16 archWalletCollected;
+    u8 archUnlockedMinigames;
+    u32 archUnlockedBadges : 24;
+    u8 archUpgradeLevel : 4;
+    u16 archUnlockedMoves; //Futureproofing. Won't be in 1.0
+    u16 archUnlockedPaintings;
+
+
+
 
     struct SaveBlockSignature signature; // 32 bits
 };

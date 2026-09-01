@@ -1034,7 +1034,7 @@ static const Vec3s sSaveFileButtonInitPositions[] = {
  */
 void bhv_menu_button_manager_init(void) {
 
-    if (gEepromProbe != 1) {
+    if (osEepromProbe != 1) {
         ShowAllFiles = TRUE;
         }
 
