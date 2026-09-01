@@ -7,6 +7,13 @@ static s32 sCapSaveFlags[] = {
     SAVE_FLAG_HAVE_YELLOW
 };
 
+static s32 sArchCapSaveFlags[] = {
+    SAVE_FLAG_ARCH_HAVE_WING_CAP,
+    SAVE_FLAG_ARCH_HAVE_METAL_CAP,
+    SAVE_FLAG_ARCH_HAVE_VANISH_CAP,
+    SAVE_FLAG_ARCH_HAVE_YELLOW
+};
+
 void cap_switch_act_init(void) {
     o->oAnimState = o->oBehParams2ndByte;
     cur_obj_scale(0.5f);

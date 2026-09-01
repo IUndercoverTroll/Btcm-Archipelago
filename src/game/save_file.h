@@ -51,7 +51,7 @@ struct SaveFile {
     u16 archWalletCollected;
     u8 archUnlockedMinigames; //Might go unused tbh. Don't feel like deleting my debug save files getting rid of it.
     u32 archUnlockedBadges : 24;
-    u8 archUpgradeLevel : 4; //Also gonna go unused. I don't feel like dealing with the 5 million references to gMarioState->Level right now.
+    u8 archUpgradeLevel : 4; //Unused for now. Don't feel like going through all 50 gMarioState->Level references.
     u16 archUnlockedMoves; //Futureproofing. Won't be in 1.0
     u16 archUnlockedPaintings;
 
@@ -158,6 +158,10 @@ enum SaveProgressFlags {
     SAVE_FLAG_NEW_GAME_PLUS          = (1 << 16),
     SAVE_FLAG_ARCH_LENS_OBTAINED     = (1 << 17),
     SAVE_FLAG_ARCH_KEY_OBTAINED      = (1 << 18),
+    SAVE_FLAG_ARCH_HAVE_WING_CAP     = (1 << 19),
+    SAVE_FLAG_ARCH_HAVE_METAL_CAP    = (1 << 20),
+    SAVE_FLAG_ARCH_HAVE_VANISH_CAP   = (1 << 21),
+    SAVE_FLAG_ARCH_HAVE_YELLOW       = (1 << 22),
 
     //23 is limit, anything beyond are secret stars
 
