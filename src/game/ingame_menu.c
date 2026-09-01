@@ -2621,7 +2621,7 @@ s32 render_pause_courses_and_castle(void) {
                 }
 
             if (gPlayer1Controller->buttonPressed & A_BUTTON) {
-                if (save_file_get_badge_unlock() & (1<<gMarioState->numBadgeSelect)) {
+                if (save_file_arch_get_badge_unlock() & (1<<gMarioState->numBadgeSelect)) {
 
 
                     if (save_file_get_badge_equip() & (1<<gMarioState->numBadgeSelect)) {
@@ -2678,7 +2678,7 @@ s32 render_pause_courses_and_castle(void) {
                     soffset = -40+(sine*4.0f);
                     }
 
-                if (save_file_get_badge_unlock() & (1<<i)) {
+                if (save_file_arch_get_badge_unlock() & (1<<i)) {
                     display_icon(bicon_table[i], badge_location_x, badge_location_y );
                     }else{
                     display_icon(&MysteryBadge_Plane_001_mesh, badge_location_x, badge_location_y);
@@ -2690,7 +2690,7 @@ s32 render_pause_courses_and_castle(void) {
 
 
             //print badge info if badge is unlocked
-            if (save_file_get_badge_unlock() & (1<<gMarioState->numBadgeSelect)) {
+            if (save_file_arch_get_badge_unlock() & (1<<gMarioState->numBadgeSelect)) {
                 gSPDisplayList(gDisplayListHead++, dl_ia_text_begin);
                 gDPSetEnvColor(gDisplayListHead++, 0, 0, 0, 255);
                 print_generic_string(get_str_x_pos_from_center(160,badgenames[gMarioState->numBadgeSelect],0.0f)-1, 125-1-btxoff, badgenames[gMarioState->numBadgeSelect]);

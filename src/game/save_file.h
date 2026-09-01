@@ -49,7 +49,7 @@ struct SaveFile {
     u32 archNumMetalStars; //Okay maybe I was too cocky
     u16 archUnlockedCostumes;
     u16 archWalletCollected;
-    u8 archUnlockedMinigames;
+    u8 archUnlockedMinigames; //Might go unused tbh. Don't feel like deleting my debug save files getting rid of it.
     u32 archUnlockedBadges : 24;
     u8 archUpgradeLevel : 4;
     u16 archUnlockedMoves; //Futureproofing. Won't be in 1.0
@@ -253,6 +253,7 @@ u32 save_file_get_wallet_unlock(void);
 u32 save_file_regular_get_wallet_unlock(void);
 u32 save_file_get_badge_equip(void);
 u32 save_file_get_badge_unlock(void);
+u32 save_file_arch_get_badge_unlock(void);
 void save_file_set_badge_unlock(u32 flags);
 void save_file_set_badge_equip(u32 flags);
 void save_file_set_badge_unequip(u32 flags);

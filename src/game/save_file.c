@@ -740,6 +740,13 @@ u32 save_file_get_badge_unlock(void) {
     return gSaveBuffer.files[gCurrSaveFileNum - 1][0].UnlockedBadges;
 }
 
+u32 save_file_arch_get_badge_unlock(void) {
+    if (gCurrCreditsEntry != 0 || gCurrDemoInput != NULL) {
+        return 0;
+    }
+    return gSaveBuffer.files[gCurrSaveFileNum - 1][0].archUnlockedBadges;
+}
+
 void save_file_set_badge_unlock(u32 flags) {
     gSaveBuffer.files[gCurrSaveFileNum - 1][0].UnlockedBadges |= (flags);
     gSaveFileModified = TRUE;
